@@ -20,7 +20,10 @@ Look at the schematics for more informations.
 
 # Boards  
 
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-top.jpg" alt="Top" width="40%" height="40%">&nbsp;
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-bot.jpg" alt="Bottom" width="40%" height="40%">
+## Top
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-top.jpg" alt="Top">
+
+## Bottom
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-bot.jpg" alt="Bottom">
 
 
