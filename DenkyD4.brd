@@ -281,7 +281,7 @@ Teleinfo</text>
 <wire x1="42.672" y1="9.525" x2="42.672" y2="32.385" width="0.0254" layer="20"/>
 <wire x1="42.672" y1="32.385" x2="41.24325" y2="33.782" width="0.0254" layer="20" curve="90"/>
 <wire x1="10.795" y1="8.128" x2="9.42975" y2="9.4615" width="0.0254" layer="20" curve="-90"/>
-<text x="39.90975" y="32.385" size="1.016" layer="21" font="vector" ratio="15" align="center">V1.0</text>
+<text x="39.90975" y="32.385" size="1.016" layer="21" font="vector" ratio="15" align="center">V1.1</text>
 <text x="17.11325" y="19.177" size="0.8128" layer="25" font="vector" ratio="15" align="center">RGB</text>
 <text x="23.56025" y="30.80275" size="0.8128" layer="21" font="vector" ratio="15" align="center">GND</text>
 <text x="26.132" y="30.8345" size="0.8128" layer="21" font="vector" ratio="15" align="center">3V3</text>
@@ -306,7 +306,7 @@ Teleinfo</text>
 <text x="36.19675" y="30.86625" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0" align="center">4</text>
 <text x="12.065" y="20.66925" size="1.27" layer="22" font="vector" ratio="15" rot="MR90" align="center">Denky D4
 Teleinfo</text>
-<text x="39.90975" y="32.385" size="1.016" layer="22" font="vector" ratio="15" rot="MR0" align="center">V1.0</text>
+<text x="39.90975" y="32.385" size="1.016" layer="22" font="vector" ratio="15" rot="MR0" align="center">V1.1</text>
 <circle x="13.081" y="33.02" radius="0.127" width="0.3048" layer="21"/>
 <circle x="19.812" y="26.289" radius="0.127" width="0.3048" layer="21"/>
 <circle x="25.781" y="12.7" radius="0.127" width="0.3048" layer="21"/>
