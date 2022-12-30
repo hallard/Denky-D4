@@ -2,12 +2,11 @@
 *.s#?
 eagle.epf
 
-.xlsx
-.docx
-.pdf
-.mnt
-.mnb
-.csv
+*.xlsx
+*.docx
+*.pdf
+*.csv
+gerbers/*.zip
 Bom*
 
 
