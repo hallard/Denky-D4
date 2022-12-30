@@ -11,6 +11,8 @@ This board is used to get French energy meter called Teleinfo (AKA TIC) and has 
 - QWIIC/STEMMA I2C header sensors connector
 - USB-C Connector
 
+It is a plug and play board, nothing to solder or assemble.
+
 # History
 
 **New in v1.2**
@@ -45,28 +47,8 @@ Look at the schematics for more informations, easy to understand. Wiring is as f
 
 # Schematics
 
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-sch.png">
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-sch.png">
 
-# Boards (V1.1)
-
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-top.png" alt="Top" width="40%" height="40%">&nbsp;
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-bot.png" alt="Bottom" width="40%" height="40%">
-
-# Assembled boards
-
-Here an example of boards connected with wiring on [ESP32 Mini Dev board][23]
-
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-assembled-top.png" width="40%" height="40%" alt="WeMos Teleinfo Assembled TOP">&nbsp;
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-assembled-bot.png" width="40%" height="40%" alt="WeMos Teleinfo Assembled Bottom">
-
-# Assembling
-
-Nothing complicated, just use and solder headers. I suggest to use the small ones I sell with shield on Tindie, takes less place and you can either fix for life with just one part of the header soldered on both shield and ESP32.
-
-Here boards connected to [ESP32 Mini Dev board][23]
-
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-soldering-shield.png" width="40%" height="40%">&nbsp;
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-soldering-esp32.png" width="40%" height="40%">
 
 # Firmware 
 
@@ -86,7 +68,7 @@ But Tasmota team agreed it's not simple to build for end users, and they now pro
 And as a cherry on the cake, easy flasher tools (web version and executable one) will present Teleinfo firmware so you are able to flash teleinfo firmware in less than 1 minute. You can check detail [here](https://github.com/Jason2866/Tasmota-specials) but here how to do that.
 
 - Launch [Web Flasher here](https://jason2866.github.io/Tasmota-specials/) 
-- Select Teleinfo (flash will auto detect if you need ESP8266 or ESP32 and will flash the correct one)
+- Select Teleinfo 
 - Select Serial port, and click `install`
 
 <img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-web_flasher.png">
@@ -117,42 +99,21 @@ If you want to deep into this process or just curious, you can check out it's [h
 
 :memo: If you have some issues flashing with Web Flasher, do not hesitate to use another awesome tool [ESP Flasher](https://github.com/Jason2866/ESP_Flasher), with this one you can see exactly what's going on in case of issue because it has built in console. Usefull also after reboot of the device because console still active. This is the one I'm using day by day. In this case you need to download firmware to flash first [here](https://github.com/Jason2866/Tasmota-specials/tree/firmware/firmware/tasmota/other). Download firmware `tasmota-teleinfo`
 
-You can take a look on `autoconf` [folder](https://github.com/tasmota/autoconf/tree/main/raw/esp32/Wemos_Teleinfo) to see some of init commands used on ESP32. For ESP8266 you can copy content of `autoexec.bat` and manually apply to you ESP8266 teleinfo.
+You can take a look on `autoconf` [folder](https://github.com/tasmota/autoconf/tree/main/raw/esp32/Wemos_Teleinfo) to see some of init commands used on Denky D4.
 
 :memo: Don't forget to reset Energy counters on first boot with console command `EnergyTotal 0` if you have erratic values. 
 
 
 ### I2C Display
 
-You can add fancy I2C display (or even I2C sensors), take care of wiring of the display. They are not all usin the same order wiring the 4 pins on I2C connector. You need to use one with this order `GND VCC SDL SDA`. Since I2C VCC is conencted to 3.3V, your I2C device is compatible with 3.3V or 5V ones (They all have shifter since majorty of sensors works at 3.3V)
+You can add fancy I2C display (or even I2C sensors), using the on board QWIIC sensor, please refer to section [I2C Display](https://github.com/hallard/WeMos-TIC/blob/master/README.md#i2c-display).
 
-Then with tasmota you need to select correct one, in my example below it's an SHT1106 128x64 so config is (use only one time). Pleasy check Tasmota documentation for [display](https://tasmota.github.io/docs/Displays/) and associaed [commands](https://tasmota.github.io/docs/Commands/#displays).
+### Autoconf 
 
-```
-DisplayMode 2
-; 2 for SSD1306 and 7 for SH1106
-DisplayModel 2
-displaycols 21
-displayrows 8
-```
-
-Don't forget to toggle ON on tasmota WEB UI since it's like a device. If not nothing will be displayed. You can also check the OLED presence using command `i2cScan` from console, something loke below sounds good, seen on `0x3c`
-
-```
-13:09:39.490 CMD: i2cscan
-13:09:39.531 MQT: stat/tasmota_EF58A0/RESULT = {"I2CScan":"Device(s) found at 0x3c"}
-```
-
-And here is a picture of the whole working.
-
-<img src="https://github.com/hallard/WeMos-TIC/raw/master/pictures/WeMos-TIC-oled.png">
-
-### Autoconf (ESP32 Only)
-
-Another awesome feature of Tasmota is the ability to download configuration profile, and guess what, we done it for this shield, just go to configuration option, select Autoconfig and then choose in the list `Wemos Teleinfo` and here you are, ne need to copy/paste template, it's done by autoconfig.
+Another awesome feature of Tasmota is the ability to download configuration profile, and guess what, we done it for Denky D4, just go to configuration option, select Autoconfig and then choose in the list `Denky D4 V1.1` and here you are, ne need to copy/paste template, it's done by autoconfig.
 If you want to deep into this process or just curious, you can check out it's [here](https://github.com/tasmota/autoconf)
 
-### Berry Scripting (ESP32 Only)
+### Berry Scripting 
 
 Now you can personalize code with [Berry language](https://tasmota.github.io/docs/Berry/). Check out some Berry samples [here](https://github.com/arendst/Tasmota/blob/development/tasmota/berry/examples/)
 
@@ -187,7 +148,7 @@ end
 runcolor()
 ```
 
-#### Send data to Emoncms with Berry (ESP32 only)
+#### Send data to Emoncms with Berry 
 
 What's magic with Berry is the ability to do basic stuff with data, in this example we will intercept MQTT send message by Energy driver, do some calc and send data to Emoncms every 15 seconds and also to drive RGB Led from Green (low load) to Red (approach max subscription)
 
@@ -340,49 +301,10 @@ tasmota.set_timer(10000, start)
 
 ```
 
-### Tasmota templates
-
-Use the following templates depending on version of shield and ESP board (but I strongly suggest using autoconf if you have a ESP32 board)
-
-#### Shield Version 1.1
-
-ESP8266
-```
-{"NAME":"Wemos Teleinfo","GPIO":[1,1,1,1,640,608,1,1,1,5152,1376,1,1,1],"FLAG":0,"BASE":18}
-```
-
-ESP32
-```
-{"NAME":"Wemos Teleinfo","GPIO":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1376,1,1,640,608,5632,1,1,0,1,0,0,0,1,1,1,1,1,1,1,1,1],"FLAG":0,"BASE":1}
-```
-
-ESP32-S2-Mini
-```
-{"NAME":"Wemos Teleinfo","GPIO":[1,1,1,1,1,1,1,1376,1,1,1,5632,1,1,1,1,1,1,1,5632,1,1,640,1,608,1,0,1,1,1,1,1,1,1,1,1],"FLAG":0,"BASE":1}
-```
-
-ESP32-C3-Mini
-```
-{"NAME":"Wemos Teleinfo","GPIO":[1,1,1376,1,5632,1,1,288,640,1,608,1,1,1,1376,1,1,640,1,0,1,1],"FLAG":0,"BASE":1}
-```
-
-#### Shield Version 1.0
-
-Teleinfo RX is on GPIO3 for each board
-
-ESP8266
-```
-{"NAME":"TICShield","GPIO":[1,1,1,5152,640,608,1,1,1,1,1376,1,1,1],"FLAG":0,"BASE":18}
-```
-
-ESP32
-```
-{"NAME":"TICShield32","GPIO":[1,1,1,5632,1,1,1,1,1,1,1,1,1,1,1376,1,1,640,608,1,1,1,0,1,0,0,0,1,1,1,1,1,1,1,1,1],"FLAG":0,"BASE":1}
-```
 
 # Support and discussion
 
-If you have any issue or just want to discuss on this project, please use community [forum](https://community.ch2i.eu/category/19/wemos-teleinfo)
+If you have any issue or just want to discuss on this project, please use community [forum](https://community.ch2i.eu/category/20)
 
 # License
 
@@ -393,84 +315,17 @@ If you want to do commercial stuff with this project, please contact [CH2i compa
 
 # Lazy building your own? 
 
-You can order this shield fully assembled with some extra on [tindie][24]
+You can order this module fully assembled with some extra on [tindie][1]
 
-<a href="https://www.tindie.com/products/25467/"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-mediums.png" alt="I sell on Tindie" width="150" height="78"></a>
+<a href="https://www.tindie.com/products/28907/"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-mediums.png" alt="I sell on Tindie" width="150" height="78"></a>
 
 # Misc
 
 See news and other projects on my [blog][2] 
  
+[1]: https://www.tindie.com/products/25467/
 [2]: https://hallard.me
 
-[20]: https://www.wemos.cc/en/latest/d1/d1_mini_lite.html
-[21]: https://www.wemos.cc/en/latest/d1/d1_mini.html
-[22]: https://www.smart-prototyping.com/Mini-D1-PRO-Development-Board-ESP8266-4M-16M
-[23]: https://www.az-delivery.de/fr/products/esp32-d1-mini
-[24]: https://www.tindie.com/products/25467/
-[25]: https://www.wemos.cc/en/latest/s2/s2_mini.html
-[26]: https://www.wemos.cc/en/latest/c3/c3_mini.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-This board is used to get French energy meter called Teleinfo data with an ESP32 device.
-
-it has just few minimal features.
-
-- Teleinfo Reader interface
-- I2C Pullups placement
-- RGB Led
-- Classic I2C header sensors connector
-
-
-# Detailed Description
-
-Look at the schematics for more informations.
-
-# Schematic  
-
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-sch.png">
-
-# Boards  
-
-## Top
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-top.jpg" alt="Top">
-
-## Bottom
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/denky-d4-bot.jpg" alt="Bottom">
 
 
 
