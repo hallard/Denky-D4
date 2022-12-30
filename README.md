@@ -113,6 +113,21 @@ You can add fancy I2C display (or even I2C sensors), using the on board QWIIC se
 Another awesome feature of Tasmota is the ability to download configuration profile, and guess what, we done it for Denky D4, just go to configuration option, select Autoconfig and then choose in the list `Denky D4 V1.1` and here you are, ne need to copy/paste template, it's done by autoconfig.
 If you want to deep into this process or just curious, you can check out it's [here](https://github.com/tasmota/autoconf)
 
+
+### Tasmota template
+
+I strongly suggest using awesome Tamsota autoconf feature but if you need Tasmota template for Denky D4, here it it
+
+#### V1.1 and up
+```json
+{"NAME":"Denky D4 (v1.1)","GPIO":[32,0,0,0,1,0,0,0,0,1,1376,1,0,0,0,0,0,640,608,0,0,0,0,0,0,0,5632,0,0,0,0,0,0,0,0,0],"FLAG":0,"BASE":1}
+```
+
+#### V1.0
+```json
+{"NAME":"Denky D4 (v1.0)","GPIO":[32,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,640,608,0,0,450,449,448,0,0,5632,0,0,0,0,0,0,0,0,0],"FLAG":0,"BASE":1}
+```
+
 ### Berry Scripting 
 
 Now you can personalize code with [Berry language](https://tasmota.github.io/docs/Berry/). Check out some Berry samples [here](https://github.com/arendst/Tasmota/blob/development/tasmota/berry/examples/)
