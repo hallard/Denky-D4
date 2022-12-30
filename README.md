@@ -1,13 +1,14 @@
 # Denky D4 ESP32 Teleinfo
 
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4.jpg" alt="Denky D4">
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-red.png" alt="Denky D4">
 
 This board is used to get French energy meter called Teleinfo (AKA TIC) and has the following features:
 
 - Steroid ESP32 using ESP32-PICO-V3-02 chip with 8Mb Flash and 2Mb PSRAM
 - Serial to USB onboard converter
 - Teleinfo Reader interface
-- RGB Led
+- RGB User Led
+- Blue LED to see if Teleinfo signal is received
 - QWIIC/STEMMA I2C header sensors connector
 - USB-C Connector
 
@@ -18,7 +19,6 @@ It is a plug and play board, nothing to solder or assemble.
 **New in v1.2**
 
 - Replaced R3 by a trimmer to allow TIC sensitivity change without soldering resistors
-- Added visual LED on teleinfo receive signal
 
 **New in v1.1**
 
@@ -27,6 +27,7 @@ It is a plug and play board, nothing to solder or assemble.
 - Added footprint for U-FL connector for external antenna 
 - Removed headers pins
 - Reduced RGB LED size using SK6805-1515
+- Added small visual blue LED on Teleinfo receive signal
 - All components on same side (nothing on bottom side)
 
 **v1.0**
@@ -47,10 +48,18 @@ Look at the schematics for more informations, easy to understand. Wiring is as f
 
 # Schematics
 
-<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-sch.png">
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-sch.png" alt="Denky D4 Schematics">
+
+# Boards
+
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4.jpg" alt="Denky D4 Size">
+
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-Boards.png" alt="Denky D4 Boards">
 
 
 # Firmware 
+
+It's compatible with Arduino IDE, Visual Studio Code and also Micro Python since this board use same CPU than Adafruit [QT-PY-ESP32-PICO](https://learn.adafruit.com/adafruit-qt-py-esp32-pico)
 
 You can write your own and use with [LibTeleinfo](https://github.com/hallard/LibTeleinfo) library I wrote if you want to get rid of driving teleinfo stuff (chekout some [examples](ttps://github.com/hallard/LibTeleinfo/tree/master/examples)).
 
