@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="25" unitdist="mil" unit="mil" style="dots" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -5038,6 +5038,60 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 </deviceset>
 </devicesets>
 </library>
+<library name="Particle">
+<packages>
+<package name="TP35_BOT">
+<smd name="P$1" x="0" y="0" dx="0.889" dy="0.889" layer="16" cream="no"/>
+</package>
+<package name="TP70_BOT">
+<smd name="P$1" x="0" y="0" dx="1.778" dy="1.778" layer="16" cream="no"/>
+</package>
+<package name="TP60_BOT">
+<smd name="P$1" x="0" y="0" dx="1.524" dy="1.524" layer="16" cream="no"/>
+</package>
+</packages>
+<symbols>
+<symbol name="TESTPAD">
+<pin name="TP" x="2.54" y="0" visible="off" length="short" rot="R180"/>
+<circle x="0" y="0" radius="0.508" width="0.889" layer="94"/>
+<text x="-1.27" y="1.27" size="1.778" layer="95" distance="10" rot="R180">TP</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="TP">
+<description>Test Points of all sizes and shapes</description>
+<gates>
+<gate name="G$1" symbol="TESTPAD" x="-2.54" y="0"/>
+</gates>
+<devices>
+<device name="1" package="TP35_BOT">
+<connects>
+<connect gate="G$1" pin="TP" pad="P$1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="2" package="TP70_BOT">
+<connects>
+<connect gate="G$1" pin="TP" pad="P$1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="3" package="TP60_BOT">
+<connects>
+<connect gate="G$1" pin="TP" pad="P$1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -5114,7 +5168,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <part name="GND33" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="R9" library="_c2h" deviceset="RESISTOR" device="0402-RES" value="5.1K"/>
 <part name="R7" library="_c2h" deviceset="RESISTOR" device="0402-RES" value="5.1K"/>
-<part name="J2" library="_c2h" deviceset="QWIIC_CONNECTOR" device="" value="Vertical Qwiic Connector"/>
+<part name="J2" library="_c2h" deviceset="QWIIC_CONNECTOR" device="" value="Qwiic"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="LED" library="_c2h" deviceset="SK6805" device="1515"/>
 <part name="D1" library="microbuilder" deviceset="DIODE" device="SOD-523" value="1N4148"/>
@@ -5127,13 +5181,21 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <part name="ANT" library="_c2h" deviceset="NN01-102" device="320" value="NN01-102"/>
 <part name="SW2" library="_c2h" deviceset="SMD-BUTTON(2P-3.0X2.5X1.2+0.4MM)" device=""/>
 <part name="R3" library="adafruit" deviceset="TRIMPOT" device="TC33X" value="1K"/>
+<part name="TP3" library="Particle" deviceset="TP" device="3"/>
+<part name="TGG" library="Particle" deviceset="TP" device="3"/>
+<part name="U$6" library="Particle" deviceset="TP" device="3"/>
+<part name="U$11" library="Particle" deviceset="TP" device="3"/>
+<part name="U$16" library="microbuilder" deviceset="3.3V" device=""/>
+<part name="GND12" library="supply1" deviceset="GND" device=""/>
+<part name="U$3" library="Particle" deviceset="TP" device="3"/>
+<part name="GND13" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="195.58" y="16.51" size="2.54" layer="94" font="vector" rot="MR0">File:</text>
-<text x="231.14" y="69.85" size="3.81" layer="94" font="vector" ratio="15" rot="R180">Teleinfo</text>
-<text x="255.27" y="182.88" size="3.81" layer="94" font="vector" ratio="15" rot="R180">I2C</text>
+<text x="229.235" y="77.47" size="3.81" layer="94" font="vector" ratio="15" rot="R180">Teleinfo</text>
+<text x="268.605" y="182.88" size="3.81" layer="94" font="vector" ratio="15" rot="R180">I2C / GPIO</text>
 <text x="81.915" y="127" size="1.778" layer="97" align="top-center">600mA out
 6V max in</text>
 <text x="144.78" y="47.625" size="1.778" layer="94">GPIO20 on V3/V3-02</text>
@@ -5144,7 +5206,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <text x="144.78" y="62.865" size="1.778" layer="94">OK on V3/V3-02</text>
 <text x="144.78" y="70.485" size="1.778" layer="94">NC on V3/V3-02</text>
 <text x="144.78" y="67.945" size="1.778" layer="94">NC on V3/V2-02</text>
-<text x="220.345" y="113.665" size="3.81" layer="94" font="vector" ratio="15">RGB LEd</text>
+<text x="223.52" y="114.935" size="3.81" layer="94" font="vector" ratio="15">RGB LEd</text>
 <text x="191.135" y="38.735" size="2.54" layer="95" rot="R90">Teleinfo</text>
 <wire x1="6.985" y1="109.22" x2="104.775" y2="109.22" width="0.8128" layer="94" style="shortdash"/>
 <wire x1="104.775" y1="109.22" x2="104.775" y2="183.515" width="0.8128" layer="94" style="shortdash"/>
@@ -5153,9 +5215,8 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <wire x1="184.15" y1="109.22" x2="184.15" y2="26.035" width="0.8128" layer="94" style="shortdash"/>
 <wire x1="185.42" y1="81.915" x2="277.495" y2="81.915" width="0.8128" layer="94" style="shortdash"/>
 <wire x1="277.495" y1="81.915" x2="277.495" y2="82.55" width="0.8128" layer="94" style="shortdash"/>
-<wire x1="223.52" y1="182.88" x2="223.52" y2="128.905" width="0.8128" layer="94" style="shortdash"/>
-<wire x1="223.52" y1="128.905" x2="278.765" y2="128.905" width="0.8128" layer="94" style="shortdash"/>
-<wire x1="223.52" y1="128.905" x2="223.52" y2="122.555" width="0.8128" layer="94" style="shortdash"/>
+<wire x1="223.52" y1="182.88" x2="223.52" y2="122.555" width="0.8128" layer="94" style="shortdash"/>
+<wire x1="223.52" y1="122.555" x2="278.765" y2="122.555" width="0.8128" layer="94" style="shortdash"/>
 <wire x1="223.52" y1="122.555" x2="190.5" y2="122.555" width="0.8128" layer="94" style="shortdash"/>
 <wire x1="190.5" y1="122.555" x2="190.5" y2="109.22" width="0.8128" layer="94" style="shortdash"/>
 <text x="140.97" y="179.07" size="3.81" layer="94" font="vector" ratio="15">USB / Serial</text>
@@ -5163,13 +5224,13 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <text x="98.425" y="102.87" size="3.81" layer="94" font="vector" ratio="15">CPU</text>
 </plain>
 <instances>
-<instance part="R1" gate="G$1" x="270.51" y="154.94" smashed="yes" rot="R90">
-<attribute name="NAME" x="269.0114" y="153.67" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="273.812" y="152.4" size="1.778" layer="96" rot="R90"/>
+<instance part="R1" gate="G$1" x="270.51" y="144.145" smashed="yes" rot="R90">
+<attribute name="NAME" x="269.0114" y="142.875" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="273.812" y="141.605" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="R2" gate="G$1" x="262.89" y="154.94" smashed="yes" rot="R90">
-<attribute name="NAME" x="261.3914" y="153.67" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="266.192" y="152.4" size="1.778" layer="96" rot="R90"/>
+<instance part="R2" gate="G$1" x="262.89" y="144.145" smashed="yes" rot="R90">
+<attribute name="NAME" x="261.3914" y="142.875" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="266.192" y="141.605" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="NAME" gate="G$1" x="5.08" y="5.08" smashed="yes">
 <attribute name="DRAWING_NAME" x="196.85" y="16.51" size="2.54" layer="94" font="vector"/>
@@ -5179,8 +5240,8 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <attribute name="CNAME" x="186.69" y="21.59" size="2.54" layer="94" font="vector"/>
 <attribute name="CREVISION" x="240" y="6.25" size="2.54" layer="94" font="vector"/>
 </instance>
-<instance part="P+7" gate="3V3-EXT" x="262.89" y="163.195" smashed="yes">
-<attribute name="VALUE" x="260.604" y="166.751" size="1.778" layer="96"/>
+<instance part="P+7" gate="3V3-EXT" x="262.89" y="152.4" smashed="yes">
+<attribute name="VALUE" x="260.604" y="155.956" size="1.778" layer="96"/>
 </instance>
 <instance part="OK1" gate="G$1" x="224.79" y="46.355" smashed="yes">
 <attribute name="NAME" x="217.805" y="52.07" size="1.778" layer="95"/>
@@ -5348,7 +5409,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <attribute name="NAME" x="39.878" y="138.684" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="43.688" y="139.7" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="J2" gate="G$1" x="245.11" y="144.145"/>
+<instance part="J2" gate="G$1" x="247.65" y="133.35"/>
 <instance part="GND9" gate="1" x="257.175" y="97.155" rot="R90"/>
 <instance part="LED" gate="G$1" x="238.125" y="92.075"/>
 <instance part="D1" gate="G$1" x="213.995" y="106.68" smashed="yes">
@@ -5366,7 +5427,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <attribute name="NAME" x="45.974" y="80.137" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="46.355" y="75.057" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="GND3" gate="1" x="38.735" y="64.135"/>
+<instance part="GND3" gate="1" x="38.735" y="63.5"/>
 <instance part="U2" gate="G$2" x="154.305" y="135.89" smashed="yes"/>
 <instance part="GND8" gate="1" x="154.305" y="125.095"/>
 <instance part="J3" gate="G$1" x="198.12" y="45.085" rot="MR0"/>
@@ -5379,6 +5440,16 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <attribute name="NAME" x="203.962" y="35.052" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="209.296" y="35.179" size="1.778" layer="96" rot="MR180"/>
 </instance>
+<instance part="TP3" gate="G$1" x="231.14" y="166.37"/>
+<instance part="TGG" gate="G$1" x="231.14" y="154.305"/>
+<instance part="U$6" gate="G$1" x="231.14" y="163.195"/>
+<instance part="U$11" gate="G$1" x="231.14" y="160.02"/>
+<instance part="U$16" gate="G$1" x="236.855" y="168.91" smashed="yes">
+<attribute name="VALUE" x="235.331" y="169.926" size="1.27" layer="96"/>
+</instance>
+<instance part="GND12" gate="1" x="236.22" y="151.765"/>
+<instance part="U$3" gate="G$1" x="231.14" y="156.845"/>
+<instance part="GND13" gate="1" x="261.62" y="128.27"/>
 </instances>
 <busses>
 </busses>
@@ -5454,9 +5525,10 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <wire x1="38.735" y1="31.75" x2="38.735" y2="27.94" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<wire x1="252.73" y1="141.605" x2="260.35" y2="141.605" width="0.1524" layer="91"/>
-<label x="255.27" y="141.605" size="1.778" layer="95"/>
+<wire x1="255.27" y1="130.81" x2="261.62" y2="130.81" width="0.1524" layer="91"/>
+<label x="255.27" y="130.81" size="1.778" layer="95"/>
 <pinref part="J2" gate="G$1" pin="1"/>
+<pinref part="GND13" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="C2" gate="G$1" pin="2"/>
@@ -5499,23 +5571,27 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <segment>
 <pinref part="Z2" gate="Z$1" pin="2"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<wire x1="38.735" y1="67.31" x2="38.735" y2="66.675" width="0.1524" layer="91"/>
+<wire x1="38.735" y1="67.31" x2="38.735" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U2" gate="G$2" pin="TP"/>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="154.305" y1="128.27" x2="154.305" y2="127.635" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="TGG" gate="G$1" pin="TP"/>
+<pinref part="GND12" gate="1" pin="GND"/>
+<wire x1="236.22" y1="154.305" x2="233.68" y2="154.305" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="262.89" y1="149.86" x2="262.89" y2="149.225" width="0.1524" layer="91"/>
-<wire x1="260.35" y1="149.225" x2="262.89" y2="149.225" width="0.1524" layer="91"/>
-<wire x1="252.73" y1="149.225" x2="260.35" y2="149.225" width="0.1524" layer="91"/>
-<label x="255.27" y="149.225" size="1.778" layer="95"/>
+<wire x1="262.89" y1="139.065" x2="262.89" y2="138.43" width="0.1524" layer="91"/>
+<wire x1="255.27" y1="138.43" x2="262.89" y2="138.43" width="0.1524" layer="91"/>
+<label x="255.27" y="138.43" size="1.778" layer="95"/>
 <pinref part="J2" gate="G$1" pin="4"/>
-<junction x="260.35" y="149.225"/>
+<junction x="262.89" y="138.43"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="IO22"/>
@@ -5526,12 +5602,12 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <net name="SDA" class="0">
 <segment>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="270.51" y1="149.86" x2="270.51" y2="146.685" width="0.1524" layer="91"/>
-<wire x1="260.35" y1="146.685" x2="270.51" y2="146.685" width="0.1524" layer="91"/>
-<wire x1="252.73" y1="146.685" x2="260.35" y2="146.685" width="0.1524" layer="91"/>
-<label x="255.27" y="146.685" size="1.778" layer="95"/>
+<wire x1="270.51" y1="139.065" x2="270.51" y2="135.89" width="0.1524" layer="91"/>
+<wire x1="262.89" y1="135.89" x2="270.51" y2="135.89" width="0.1524" layer="91"/>
+<wire x1="255.27" y1="135.89" x2="262.89" y2="135.89" width="0.1524" layer="91"/>
+<label x="255.27" y="135.89" size="1.778" layer="95"/>
 <pinref part="J2" gate="G$1" pin="3"/>
-<junction x="260.35" y="146.685"/>
+<junction x="262.89" y="135.89"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$1" pin="IO21"/>
@@ -5542,13 +5618,13 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <net name="3V3" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="262.89" y1="161.925" x2="270.51" y2="161.925" width="0.1524" layer="91"/>
-<wire x1="262.89" y1="160.02" x2="262.89" y2="161.925" width="0.1524" layer="91"/>
+<wire x1="262.89" y1="151.13" x2="270.51" y2="151.13" width="0.1524" layer="91"/>
+<wire x1="262.89" y1="149.225" x2="262.89" y2="151.13" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="270.51" y1="160.02" x2="270.51" y2="161.925" width="0.1524" layer="91"/>
+<wire x1="270.51" y1="149.225" x2="270.51" y2="151.13" width="0.1524" layer="91"/>
 <pinref part="P+7" gate="3V3-EXT" pin="3V3-EXT"/>
-<wire x1="262.89" y1="163.195" x2="262.89" y2="161.925" width="0.1524" layer="91"/>
-<junction x="262.89" y="161.925"/>
+<wire x1="262.89" y1="152.4" x2="262.89" y2="151.13" width="0.1524" layer="91"/>
+<junction x="262.89" y="151.13"/>
 </segment>
 <segment>
 <pinref part="R5" gate="G$1" pin="2"/>
@@ -5621,9 +5697,14 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <junction x="95.885" y="144.78"/>
 </segment>
 <segment>
-<wire x1="252.73" y1="144.145" x2="260.35" y2="144.145" width="0.1524" layer="91"/>
-<label x="255.27" y="144.145" size="1.778" layer="95"/>
+<wire x1="255.27" y1="133.35" x2="262.89" y2="133.35" width="0.1524" layer="91"/>
+<label x="255.27" y="133.35" size="1.778" layer="95"/>
 <pinref part="J2" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="TP3" gate="G$1" pin="TP"/>
+<pinref part="U$16" gate="G$1" pin="3.3V"/>
+<wire x1="236.855" y1="166.37" x2="233.68" y2="166.37" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GPIO16" class="0">
@@ -5751,6 +5832,11 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <pinref part="U1" gate="G$1" pin="IO33"/>
 <wire x1="92.075" y1="24.765" x2="92.075" y2="14.605" width="0.1524" layer="91"/>
 <label x="92.075" y="14.605" size="1.778" layer="95" rot="R90"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="TP"/>
+<wire x1="233.68" y1="163.195" x2="236.855" y2="163.195" width="0.1524" layer="91"/>
+<label x="236.855" y="163.195" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="GPIO27" class="0">
@@ -5907,6 +5993,11 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <wire x1="132.715" y1="60.325" x2="144.145" y2="60.325" width="0.1524" layer="91"/>
 <label x="133.35" y="60.325" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="U$3" gate="G$1" pin="TP"/>
+<wire x1="233.68" y1="156.845" x2="236.855" y2="156.845" width="0.1524" layer="91"/>
+<label x="236.855" y="156.845" size="1.016" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="GPIO11" class="0">
 <segment>
@@ -6058,6 +6149,11 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <wire x1="94.615" y1="24.765" x2="94.615" y2="13.335" width="0.1524" layer="91"/>
 <label x="94.615" y="14.605" size="1.778" layer="95" rot="R90"/>
 </segment>
+<segment>
+<pinref part="U$11" gate="G$1" pin="TP"/>
+<wire x1="233.68" y1="160.02" x2="236.855" y2="160.02" width="0.1524" layer="91"/>
+<label x="236.855" y="160.02" size="1.016" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="N$8" class="0">
 <segment>
@@ -6135,12 +6231,6 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <junction x="38.735" y="76.835"/>
 </segment>
 </net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="RI"/>
-<wire x1="169.545" y1="142.24" x2="174.625" y2="142.24" width="0.4064" layer="91"/>
-</segment>
-</net>
 </nets>
 </sheet>
 </sheets>
@@ -6157,9 +6247,6 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <approved hash="104,1,94.615,80.645,U1G$1,IO21,SDA,,,"/>
 <approved hash="104,1,108.585,52.705,U1G$2,GNDPAD,GND,,,"/>
 <approved hash="202,1,89.535,134.62,U3,BP,,,,"/>
-<approved hash="202,1,26.67,71.755,E1,FEED_GNSS,,,,"/>
-<approved hash="204,1,26.67,66.675,E1,GROUND,,,,"/>
-<approved hash="202,1,169.545,142.24,U2G$1,RI,,,,"/>
 <approved hash="104,1,139.065,167.64,U2G$1,VIO,N$8,,,"/>
 <approved hash="104,1,139.065,165.1,U2G$1,VDD,N$8,,,"/>
 <approved hash="104,1,139.065,162.56,U2G$1,REGIN,V_USB,,,"/>
@@ -6170,6 +6257,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <approved hash="104,1,154.305,128.27,U2G$2,TP,GND,,,"/>
 <approved hash="104,1,252.73,141.605,J2,1,GND,,,"/>
 <approved hash="104,1,252.73,144.145,J2,2,3V3,,,"/>
+<approved hash="113,1,158.115,31.6569,SW2,,,,,"/>
 </errors>
 </schematic>
 </drawing>
