@@ -16,11 +16,23 @@ It is a plug and play board, nothing to solder or assemble.
 
 # History
 
-**New in v1.2**
+**New in v1.3a**
+
+- Changed TIC trimmer from 1K to 2K
+- Changed TIC Led (blue) resistor to decrease light intensity
+- Placed easy cutting trace to disable Teleinfo Blue LED
+- Added exposed pad for 5V and GND to external powering out of USB connector
+
+
+**v1.3**
+
+- Changed some silk for better reading
+
+**v1.2**
 
 - Replaced R3 by a trimmer to allow TIC sensitivity change without soldering resistors
 
-**New in v1.1**
+**v1.1**
 
 - Changed CPU now use ESP32-PICO-V3-02 with 8Mb Flash and 2Mb PSRAM
 - Changed USB/SERIAL chip to CH9102 due to shortage
@@ -137,13 +149,13 @@ I strongly suggest using awesome Tamsota autoconf feature but if you need Tasmot
 {"NAME":"Denky D4 (v1.0)","GPIO":[32,0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0,640,608,0,0,450,449,448,0,0,5632,0,0,0,0,0,0,0,0,0],"FLAG":0,"BASE":1}
 ```
 
-### Berry Scripting 
+## Berry Scripting 
 
 Now you can personalize code with [Berry language](https://tasmota.github.io/docs/Berry/). Check out some Berry samples [here](https://github.com/arendst/Tasmota/blob/development/tasmota/berry/examples/)
 
 You can do that by going to Berry console from Tasmota WEB user interface.
 
-#### Drive RGB LED depending on actual power
+### Drive RGB LED depending on actual power
 
 Here is a Berry example, goal is to follow real time consumption driving on board RGB Led depending on current Power consumption (low green then going to red when reaching maximum current of your contract)
 
@@ -172,7 +184,7 @@ end
 runcolor()
 ```
 
-#### Send data to Emoncms with Berry 
+### Send data to Emoncms with Berry 
 
 What's magic with Berry is the ability to do basic stuff with data, in this example we will intercept MQTT send message by Energy driver, do some calc and send data to Emoncms every 15 seconds and also to drive RGB Led from Green (low load) to Red (approach max subscription)
 
@@ -180,7 +192,7 @@ Modifiy API key with your, and copy paste the following code into Berry Console.
 
 Once all is fine, you paste the code into a file named `autoexec.be` on the Tasmota Filesystem so it will be executed each time Tasmota device starting.
 
-### Mode Historique (contrat heures creuses)
+#### Mode Historique (contrat heures creuses)
 
 ```python
 import json
@@ -255,7 +267,7 @@ tasmota.set_timer(10000, start)
 ```
 
 
-### Mode Standard (contrat heures creuses)
+#### Mode Standard (contrat heures creuses)
 
 ```python
 import json
@@ -324,6 +336,98 @@ end
 tasmota.set_timer(10000, start)
 
 ```
+
+
+### Customn WEB Interface
+
+If you are not happy with values on the WEB interface you can totaly change it to fit your needs.
+
+You can add new values to display or even disable all values displayed and use you own or even some calculated ones.
+
+To disable all current values displayed please use the following command in console (not the berry one)
+
+```
+backlog0 WebSensor0 0 ; WebSensor1 0 ; WebSensor2 0 ; WebSensor3 0
+```
+
+Then you can add Teleinfo driver (this one as example) into a file named `teleinfo.be`
+
+This is just an example please fill it to your needs. This one display Total `EAST` index, `URMS1` and `IRMS1` on wab interface
+
+
+```python
+# Teleinfo driver written in Berry
+# Support for Teleinfo custom values from choosen fields returned by smart meter
+ 
+class TELEINFO: Driver
+
+  # Global var Needed
+  var east
+  var irms
+  var urms
+
+  def init()
+    # initialize globals
+
+    # Don't display original sensors on WebUI, we want just our ones
+    tasmota.cmd("backlog0 WebSensor0 0 ; WebSensor1 0 ; WebSensor2 0 ; WebSensor3 0")
+
+    # create rules to trigger when TIC values updates 
+    # Use Teleinfo Etiquette Names to get whatever value you need
+    tasmota.add_rule("TIC#EAST", /value -> self.trigger_east(value))
+    tasmota.add_rule("TIC#IRMS1", /value -> self.trigger_irms(value))
+    tasmota.add_rule("TIC#URMS1", /value -> self.trigger_urms(value))
+  end
+
+  def trigger_east(index)
+    self.east = index
+  end
+
+  def trigger_irms(i)
+    self.irms = i
+    # DEBUG print("irms:", i)
+  end
+
+  def trigger_urms(u)
+    self.urms = u
+    # DEBUG print("urms:", u)
+  end
+
+  # trigger a read every second 
+  def every_second()
+    # DEBUG print("sensors:",tasmota.read_sensors())
+  end
+
+  # display sensor value in the web UI
+  def web_sensor()
+    import string
+    var msg = string.format(
+            "{s}Consommation{m}%d Wh{e}"
+            "{s}Tension RMS{m}%d V{e}"
+            "{s}Intensité RMS{m}%d A{e}", 
+             self.east, self.urms, self.irms )
+
+    tasmota.web_send_decimal(msg)
+  end
+end
+
+# Instantiate the driver
+teleinfo = TELEINFO()
+# add it to Tasmota
+tasmota.add_driver(teleinfo)
+
+
+```
+
+Then into your `autoexec.be` file just add
+
+```python
+# Auto start teleinfo driver
+load("teleinfo.be")
+```
+
+
+<img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-tasmota-custom-ui.png" alt="Denky D4 Custom User Interface">
 
 
 # Support and discussion
