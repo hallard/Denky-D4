@@ -338,11 +338,11 @@ tasmota.set_timer(10000, start)
 ```
 
 
-### Customn WEB Interface
+### Custom WEB Interface
 
-If you are not happy with values on the WEB interface you can totaly change it to fit your needs.
+If you are not happy with values on the WEB interface you can totaly change them to fit your needs.
 
-You can add new values to display or even disable all values displayed and use you own or even some calculated ones.
+You can add new values to display or disable all values displayed and use you own or even some calculated ones.
 
 To disable all current values displayed please use the following command in console (not the berry one)
 
@@ -352,7 +352,7 @@ backlog0 WebSensor0 0 ; WebSensor1 0 ; WebSensor2 0 ; WebSensor3 0
 
 Then you can add Teleinfo driver (this one as example) into a file named `teleinfo.be`
 
-This is just an example please fill it to your needs. This one display Total `EAST` index, `URMS1` and `IRMS1` on wab interface
+This is just an example please fill it to your needs. This one display Total `EAST` index, `URMS1` and `IRMS1` on web interface
 
 
 ```python
@@ -372,7 +372,7 @@ class TELEINFO: Driver
     # Don't display original sensors on WebUI, we want just our ones
     tasmota.cmd("backlog0 WebSensor0 0 ; WebSensor1 0 ; WebSensor2 0 ; WebSensor3 0")
 
-    # create rules to trigger when TIC values updates 
+    # create rules to trigger when Teleinfo values updates 
     # Use Teleinfo Etiquette Names to get whatever value you need
     tasmota.add_rule("TIC#EAST", /value -> self.trigger_east(value))
     tasmota.add_rule("TIC#IRMS1", /value -> self.trigger_irms(value))
@@ -409,6 +409,7 @@ class TELEINFO: Driver
 
     tasmota.web_send_decimal(msg)
   end
+
 end
 
 # Instantiate the driver
@@ -416,16 +417,16 @@ teleinfo = TELEINFO()
 # add it to Tasmota
 tasmota.add_driver(teleinfo)
 
-
 ```
 
-Then into your `autoexec.be` file just add
+Then you need to load and start it into your `autoexec.be` file. just add followin at the end of the file
 
 ```python
 # Auto start teleinfo driver
 load("teleinfo.be")
 ```
 
+#### Here how it looks like
 
 <img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-tasmota-custom-ui.png" alt="Denky D4 Custom User Interface">
 
@@ -443,7 +444,7 @@ If you want to do commercial stuff with this project, please contact [CH2i compa
 
 # Lazy building your own? 
 
-You can order this module (V1.1 only) fully assembled with some extra on [tindie][1]
+You can order this module (V1.3a only) fully assembled with some extra on [tindie][1]
 
 <a href="https://www.tindie.com/products/28907/"><img src="https://d2ss6ovg47m0r5.cloudfront.net/badges/tindie-mediums.png" alt="I sell on Tindie" width="150" height="78"></a>
 
