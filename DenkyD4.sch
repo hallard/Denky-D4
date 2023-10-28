@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="25" unitdist="mil" unit="mil" style="dots" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -2273,6 +2273,46 @@ Source: http://www.vishay.com/docs/83675/sfh620.pdf</description>
 <vertex x="-0.2" y="0.2"/>
 </polygon>
 </package>
+<package name="SOLDERJUMPER_CLOSEDWIRE">
+<wire x1="1.397" y1="-1.016" x2="-1.397" y2="-1.016" width="0.2032" layer="21"/>
+<wire x1="1.397" y1="1.016" x2="1.651" y2="0.762" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1.651" y1="0.762" x2="-1.397" y2="1.016" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1.651" y1="-0.762" x2="-1.397" y2="-1.016" width="0.2032" layer="21" curve="90"/>
+<wire x1="1.397" y1="-1.016" x2="1.651" y2="-0.762" width="0.2032" layer="21" curve="90"/>
+<wire x1="1.651" y1="-0.762" x2="1.651" y2="0.762" width="0.2032" layer="21"/>
+<wire x1="-1.651" y1="-0.762" x2="-1.651" y2="0.762" width="0.2032" layer="21"/>
+<wire x1="-1.397" y1="1.016" x2="1.397" y2="1.016" width="0.2032" layer="21"/>
+<wire x1="1.016" y1="0" x2="1.524" y2="0" width="0.2032" layer="51"/>
+<wire x1="-1.016" y1="0" x2="-1.524" y2="0" width="0.2032" layer="51"/>
+<wire x1="-0.254" y1="-0.127" x2="-0.254" y2="0.127" width="1.27" layer="51" curve="-180" cap="flat"/>
+<wire x1="0.254" y1="0.127" x2="0.254" y2="-0.127" width="1.27" layer="51" curve="-180" cap="flat"/>
+<smd name="1" x="-0.762" y="0" dx="1.1684" dy="1.6002" layer="1" cream="no"/>
+<smd name="2" x="0.762" y="0" dx="1.1684" dy="1.6002" layer="1" cream="no"/>
+<smd name="WIRE" x="0" y="0" dx="0.635" dy="0.2032" layer="1" cream="no"/>
+<text x="-1.651" y="1.27" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-1.524" y="-1.651" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.0762" y1="-0.9144" x2="0.0762" y2="0.9144" layer="29"/>
+</package>
+<package name="SOLDERJUMPER_CLOSEDPERM">
+<wire x1="1.397" y1="-1.016" x2="-1.397" y2="-1.016" width="0.2032" layer="21"/>
+<wire x1="1.397" y1="1.016" x2="1.651" y2="0.762" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1.651" y1="0.762" x2="-1.397" y2="1.016" width="0.2032" layer="21" curve="-90"/>
+<wire x1="-1.651" y1="-0.762" x2="-1.397" y2="-1.016" width="0.2032" layer="21" curve="90"/>
+<wire x1="1.397" y1="-1.016" x2="1.651" y2="-0.762" width="0.2032" layer="21" curve="90"/>
+<wire x1="-1.651" y1="-0.762" x2="-1.651" y2="0.762" width="0.2032" layer="21"/>
+<wire x1="-1.397" y1="1.016" x2="1.397" y2="1.016" width="0.2032" layer="21"/>
+<wire x1="1.016" y1="0" x2="1.524" y2="0" width="0.2032" layer="51"/>
+<wire x1="-1.016" y1="0" x2="-1.524" y2="0" width="0.2032" layer="51"/>
+<wire x1="-0.254" y1="-0.127" x2="-0.254" y2="0.127" width="1.27" layer="51" curve="-180" cap="flat"/>
+<wire x1="0.254" y1="0.127" x2="0.254" y2="-0.127" width="1.27" layer="51" curve="-180" cap="flat"/>
+<wire x1="1.651" y1="-0.762" x2="1.651" y2="0.762" width="0.2032" layer="21"/>
+<smd name="1" x="-0.762" y="0" dx="1.1684" dy="1.6002" layer="1" cream="no"/>
+<smd name="2" x="0.762" y="0" dx="1.1684" dy="1.6002" layer="1" cream="no"/>
+<smd name="WIRE" x="0" y="0" dx="0.635" dy="1.6002" layer="1" cream="no"/>
+<text x="-1.651" y="1.143" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
+<text x="-1.524" y="-1.651" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="-0.0762" y1="-0.9144" x2="0.0762" y2="0.9144" layer="29"/>
+</package>
 </packages>
 <symbols>
 <symbol name="GND">
@@ -2388,6 +2428,17 @@ Op. Temp: -40~85°C</text>
 <text x="-2.54" y="-3.81" size="1.27" layer="96">&gt;VALUE</text>
 <pin name="A" x="-2.54" y="0" visible="off" length="short" direction="pas"/>
 <pin name="C" x="2.54" y="0" visible="off" length="short" direction="pas" rot="R180"/>
+</symbol>
+<symbol name="SOLDERJUMPER_CLOSED">
+<wire x1="0.381" y1="0.635" x2="0.381" y2="-0.635" width="1.27" layer="94" curve="-180" cap="flat"/>
+<wire x1="-0.381" y1="-0.635" x2="-0.381" y2="0.635" width="1.27" layer="94" curve="-180" cap="flat"/>
+<wire x1="2.54" y1="0" x2="1.651" y2="0" width="0.1524" layer="94"/>
+<wire x1="-2.54" y1="0" x2="-1.651" y2="0" width="0.1524" layer="94"/>
+<wire x1="-0.635" y1="0" x2="0.635" y2="0" width="0.4064" layer="94"/>
+<text x="-2.54" y="2.54" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-3.81" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="1" x="-5.08" y="0" visible="pad" length="short" direction="pas" swaplevel="1"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -2724,6 +2775,37 @@ Op. Temp: -40~85°C</text>
 <connects>
 <connect gate="G$1" pin="A" pad="A"/>
 <connect gate="G$1" pin="C" pad="C"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="SOLDERJUMPER_CLOSED" prefix="SJ" uservalue="yes">
+<description>&lt;b&gt;Solder Jumper - Closed&lt;/b&gt;
+&lt;p&gt;These solder jumpers are closed by default&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;CLOSEDWIRE&lt;/b&gt; - 10 mil trace between pads that can be cut and resoldered later&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;CLOSEDPERM&lt;/b&gt; - 63 mil trace between pads for a permanent connection (used to 'bridge' two signals, a shameless hack for Eagle).  Can double as a test point as well (no cream layer)&lt;/li&gt;
+&lt;/ul&gt;</description>
+<gates>
+<gate name="G$1" symbol="SOLDERJUMPER_CLOSED" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOLDERJUMPER_CLOSEDWIRE">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PERM" package="SOLDERJUMPER_CLOSEDPERM">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -5110,7 +5192,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <part name="R2" library="_c2h" deviceset="RESISTOR" device="0402-RES" value="4.7K"/>
 <part name="NAME" library="SparkFun-Aesthetics" deviceset="FRAME-A4L" device="" value="Value">
 <attribute name="CNAME" value="DenkyD4"/>
-<attribute name="CREVISION" value="1.2"/>
+<attribute name="CREVISION" value="1.3a"/>
 <attribute name="DESIGNER" value="Charles-Henri Hallard"/>
 </part>
 <part name="P+7" library="_c2h" deviceset="3V3-EXT" device="" value="3V3"/>
@@ -5189,6 +5271,9 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="U$3" library="Particle" deviceset="TP" device="3"/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
+<part name="TGG1" library="Particle" deviceset="TP" device="3"/>
+<part name="TGG2" library="Particle" deviceset="TP" device="3"/>
+<part name="SLED" library="microbuilder" deviceset="SOLDERJUMPER_CLOSED" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -5385,13 +5470,13 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <instance part="GND6" gate="1" x="123.19" y="131.445" smashed="yes">
 <attribute name="VALUE" x="120.65" y="128.905" size="1.778" layer="96"/>
 </instance>
-<instance part="R8" gate="G$1" x="260.35" y="64.135" smashed="yes" rot="R90">
-<attribute name="NAME" x="258.8514" y="62.865" size="1.778" layer="95" rot="R90"/>
-<attribute name="VALUE" x="263.652" y="62.865" size="1.778" layer="96" rot="R90"/>
+<instance part="R8" gate="G$1" x="255.905" y="69.85" smashed="yes" rot="R180">
+<attribute name="NAME" x="257.175" y="68.3514" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="257.175" y="73.152" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="LTIC" gate="G$1" x="260.35" y="53.975" smashed="yes" rot="R270">
-<attribute name="NAME" x="265.43" y="55.88" size="1.27" layer="95" ratio="10" rot="R270"/>
-<attribute name="VALUE" x="255.27" y="56.515" size="1.27" layer="96" ratio="10" rot="R270"/>
+<instance part="LTIC" gate="G$1" x="261.62" y="63.5" smashed="yes" rot="R270">
+<attribute name="NAME" x="266.7" y="65.405" size="1.27" layer="95" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="256.54" y="66.04" size="1.27" layer="96" ratio="10" rot="R270"/>
 </instance>
 <instance part="GND7" gate="1" x="25.4" y="125.095"/>
 <instance part="J1" gate="J1" x="12.7" y="144.145" smashed="yes">
@@ -5444,12 +5529,15 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <instance part="TGG" gate="G$1" x="231.14" y="154.305"/>
 <instance part="U$6" gate="G$1" x="231.14" y="163.195"/>
 <instance part="U$11" gate="G$1" x="231.14" y="160.02"/>
-<instance part="U$16" gate="G$1" x="236.855" y="168.91" smashed="yes">
-<attribute name="VALUE" x="235.331" y="169.926" size="1.27" layer="96"/>
+<instance part="U$16" gate="G$1" x="244.475" y="168.91" smashed="yes">
+<attribute name="VALUE" x="242.951" y="169.926" size="1.27" layer="96"/>
 </instance>
-<instance part="GND12" gate="1" x="236.22" y="151.765"/>
+<instance part="GND12" gate="1" x="237.49" y="151.765"/>
 <instance part="U$3" gate="G$1" x="231.14" y="156.845"/>
 <instance part="GND13" gate="1" x="261.62" y="128.27"/>
+<instance part="TGG1" gate="G$1" x="231.14" y="151.765"/>
+<instance part="TGG2" gate="G$1" x="231.14" y="144.78"/>
+<instance part="SLED" gate="G$1" x="261.62" y="53.975" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -5581,7 +5669,12 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <segment>
 <pinref part="TGG" gate="G$1" pin="TP"/>
 <pinref part="GND12" gate="1" pin="GND"/>
-<wire x1="236.22" y1="154.305" x2="233.68" y2="154.305" width="0.1524" layer="91"/>
+<wire x1="237.49" y1="154.305" x2="234.315" y2="154.305" width="0.1524" layer="91"/>
+<pinref part="TGG1" gate="G$1" pin="TP"/>
+<wire x1="234.315" y1="154.305" x2="233.68" y2="154.305" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="151.765" x2="234.315" y2="151.765" width="0.1524" layer="91"/>
+<wire x1="234.315" y1="151.765" x2="234.315" y2="154.305" width="0.1524" layer="91"/>
+<junction x="234.315" y="154.305"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -5632,8 +5725,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <pinref part="3V3" gate="3V3-EXT" pin="3V3-EXT"/>
 <pinref part="R8" gate="G$1" pin="2"/>
 <wire x1="248.92" y1="69.85" x2="248.92" y2="71.755" width="0.1524" layer="91"/>
-<wire x1="260.35" y1="69.215" x2="260.35" y2="69.85" width="0.1524" layer="91"/>
-<wire x1="260.35" y1="69.85" x2="248.92" y2="69.85" width="0.1524" layer="91"/>
+<wire x1="250.825" y1="69.85" x2="248.92" y2="69.85" width="0.1524" layer="91"/>
 <pinref part="OK1" gate="G$1" pin="C"/>
 <wire x1="237.49" y1="48.895" x2="241.3" y2="48.895" width="0.1524" layer="91"/>
 <wire x1="241.3" y1="48.895" x2="241.3" y2="69.85" width="0.1524" layer="91"/>
@@ -5704,7 +5796,7 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <segment>
 <pinref part="TP3" gate="G$1" pin="TP"/>
 <pinref part="U$16" gate="G$1" pin="3.3V"/>
-<wire x1="236.855" y1="166.37" x2="233.68" y2="166.37" width="0.1524" layer="91"/>
+<wire x1="244.475" y1="166.37" x2="233.68" y2="166.37" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GPIO16" class="0">
@@ -6014,15 +6106,14 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 </segment>
 <segment>
 <pinref part="Q2" gate="G$1" pin="D"/>
-<wire x1="267.97" y1="48.895" x2="260.35" y2="48.895" width="0.1524" layer="91"/>
 <pinref part="R5" gate="G$1" pin="1"/>
 <junction x="248.92" y="48.895"/>
-<wire x1="260.35" y1="48.895" x2="248.92" y2="48.895" width="0.1524" layer="91"/>
+<wire x1="267.97" y1="48.895" x2="261.62" y2="48.895" width="0.1524" layer="91"/>
+<wire x1="261.62" y1="48.895" x2="248.92" y2="48.895" width="0.1524" layer="91"/>
 <wire x1="248.92" y1="48.895" x2="248.92" y2="50.165" width="0.1524" layer="91"/>
 <label x="267.97" y="48.895" size="1.27" layer="95" xref="yes"/>
-<pinref part="LTIC" gate="G$1" pin="-"/>
-<wire x1="260.35" y1="48.895" x2="260.35" y2="50.165" width="0.1524" layer="91"/>
-<junction x="260.35" y="48.895"/>
+<pinref part="SLED" gate="G$1" pin="1"/>
+<junction x="261.62" y="48.895"/>
 </segment>
 </net>
 <net name="VDDSDIO" class="0">
@@ -6135,6 +6226,11 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <wire x1="69.215" y1="144.78" x2="64.135" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="64.135" y1="144.78" x2="64.135" y2="142.24" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="TGG2" gate="G$1" pin="TP"/>
+<wire x1="233.68" y1="144.78" x2="236.22" y2="144.78" width="0.1524" layer="91"/>
+<label x="236.22" y="144.78" size="0.8128" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="GPIO26" class="0">
 <segment>
@@ -6171,7 +6267,8 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <net name="N$10" class="0">
 <segment>
 <pinref part="R8" gate="G$1" pin="1"/>
-<wire x1="260.35" y1="59.055" x2="260.35" y2="57.785" width="0.1524" layer="91"/>
+<wire x1="260.985" y1="69.85" x2="261.62" y2="69.85" width="0.1524" layer="91"/>
+<wire x1="261.62" y1="69.85" x2="261.62" y2="67.31" width="0.1524" layer="91"/>
 <pinref part="LTIC" gate="G$1" pin="+"/>
 </segment>
 </net>
@@ -6231,11 +6328,18 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <junction x="38.735" y="76.835"/>
 </segment>
 </net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="LTIC" gate="G$1" pin="-"/>
+<pinref part="SLED" gate="G$1" pin="2"/>
+<wire x1="261.62" y1="59.055" x2="261.62" y2="59.69" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 <errors>
-<approved hash="102,1,262.89,163.195,3V3-EXT,3V3,,,,"/>
+<approved hash="102,1,262.89,152.4,3V3-EXT,3V3,,,,"/>
 <approved hash="102,1,248.92,71.755,3V3-EXT,3V3,,,,"/>
 <approved hash="102,1,64.135,71.755,3.3V,3V3,,,,"/>
 <approved hash="102,1,23.495,58.42,3.3V,3V3,,,,"/>
@@ -6243,10 +6347,13 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <approved hash="102,1,107.315,12.065,3.3V,3V3,,,,"/>
 <approved hash="102,1,69.215,154.305,VIN,V_USB,,,,"/>
 <approved hash="102,1,95.885,146.05,3.3V,3V3,,,,"/>
+<approved hash="102,1,244.475,166.37,3.3V,3V3,,,,"/>
 <approved hash="104,1,66.675,50.165,U1G$1,SENSOR_CAPN,SENS_CAPN,,,"/>
+<approved hash="104,1,104.775,24.765,U1G$1,IO12,GPIO12,,,"/>
 <approved hash="104,1,94.615,80.645,U1G$1,IO21,SDA,,,"/>
 <approved hash="104,1,108.585,52.705,U1G$2,GNDPAD,GND,,,"/>
 <approved hash="202,1,89.535,134.62,U3,BP,,,,"/>
+<approved hash="202,1,169.545,142.24,U2G$1,RI,,,,"/>
 <approved hash="104,1,139.065,167.64,U2G$1,VIO,N$8,,,"/>
 <approved hash="104,1,139.065,165.1,U2G$1,VDD,N$8,,,"/>
 <approved hash="104,1,139.065,162.56,U2G$1,REGIN,V_USB,,,"/>
@@ -6255,9 +6362,35 @@ If designing 4-layer board, make sure to select the variant &lt;strong&gt;_4-LAY
 <approved hash="202,1,169.545,134.62,U2G$1,DSR,,,,"/>
 <approved hash="202,1,169.545,124.46,U2G$1,CTS,,,,"/>
 <approved hash="104,1,154.305,128.27,U2G$2,TP,GND,,,"/>
-<approved hash="104,1,252.73,141.605,J2,1,GND,,,"/>
-<approved hash="104,1,252.73,144.145,J2,2,3V3,,,"/>
+<approved hash="104,1,255.27,130.81,J2,1,GND,,,"/>
+<approved hash="104,1,255.27,133.35,J2,2,3V3,,,"/>
+<approved hash="106,1,132.715,57.785,CLK,,,,,"/>
+<approved hash="106,1,114.935,24.765,GPIO2,,,,,"/>
+<approved hash="106,1,120.015,24.765,GPIO4,,,,,"/>
+<approved hash="106,1,132.715,65.405,GPIO5,,,,,"/>
+<approved hash="106,1,132.715,50.165,GPIO9,,,,,"/>
+<approved hash="106,1,132.715,52.705,GPIO10,,,,,"/>
+<approved hash="106,1,132.715,55.245,GPIO11,,,,,"/>
+<approved hash="106,1,104.775,24.765,GPIO12,,,,,"/>
+<approved hash="106,1,109.855,24.765,GPIO13,,,,,"/>
+<approved hash="106,1,112.395,24.765,GPIO15,,,,,"/>
+<approved hash="106,1,132.715,42.545,GPIO16,,,,,"/>
+<approved hash="106,1,132.715,47.625,GPIO17,,,,,"/>
+<approved hash="106,1,132.715,67.945,GPIO18,,,,,"/>
+<approved hash="106,1,104.775,80.645,GPIO19,,,,,"/>
+<approved hash="106,1,132.715,70.485,GPIO23,,,,,"/>
+<approved hash="106,1,97.155,24.765,GPIO26,,,,,"/>
+<approved hash="106,1,99.695,24.765,GPIO27,,,,,"/>
+<approved hash="106,1,66.675,37.465,GPIO32,,,,,"/>
+<approved hash="106,1,66.675,42.545,GPIO34,,,,,"/>
+<approved hash="106,1,66.675,40.005,GPIO35,,,,,"/>
+<approved hash="106,1,66.675,50.165,SENS_CAPN,,,,,"/>
+<approved hash="106,1,66.675,52.705,SENS_CAPP,,,,,"/>
+<approved hash="106,1,66.675,47.625,SENS_VN,,,,,"/>
+<approved hash="106,1,66.675,55.245,SENS_VP,,,,,"/>
+<approved hash="106,1,132.715,45.085,VDDSDIO,,,,,"/>
 <approved hash="113,1,158.115,31.6569,SW2,,,,,"/>
+<approved hash="113,1,260.104,53.975,SLED,,,,,"/>
 </errors>
 </schematic>
 </drawing>
