@@ -1,6 +1,7 @@
 *.b#?
 *.s#?
 eagle.epf
+gerbers/
 
 *.xlsx
 *.docx
