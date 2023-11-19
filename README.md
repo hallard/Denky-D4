@@ -81,7 +81,17 @@ But I strongly suggest using amazing [Tasmota](https://tasmota.github.io/docs/) 
 
 Please check Teleinfo official tasmota [documentation](https://tasmota.github.io/docs/Teleinfo/) so see how to configure your device depending on smartmeter type and what options you need.
 
-### Unofficial builds
+### Nicolas's builds
+
+Nicolas @NicolasBernaerts has made awesome changes on Tasmota to be able to show graph of consumption, history and other great features such has:
+
+- Ecowatt server to publish RTE Ecowatt signals
+- TCP server to live stream teleinfo data
+- FTP server to easily retrieve graph data
+
+You can find more information on his dedicated [repo](https://github.com/NicolasBernaerts/tasmota/tree/master/teleinfo) and also ready made build for this Denky D4 board.
+
+### Tasmota Unofficial builds
 
 Teleinfo is not member of official Tasmota builds. So you need to build your own with `USE_TELEINFO` define. 
 But Tasmota team agreed it's not simple to build for end users, and they now provide unofficial build that follow developement branch, this mean you always have an up to date build with latest code available. Of course we added Teleinfo (ESP8266 and ESP32) builds in this unofficial build process so you have nothing to install and compile/link (building). You can't go easier.
