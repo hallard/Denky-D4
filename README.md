@@ -441,6 +441,199 @@ load("teleinfo.be")
 <img src="https://github.com/hallard/Denky-D4/blob/main/pictures/Denky-D4-tasmota-custom-ui.png" alt="Denky D4 Custom User Interface">
 
 
+### ESPHome
+
+Denky D4 is fully compatible with ESPHome, find below a sample for Historique with Heures Creuses contract.
+Pasting this code without knowing your contract and teleinfo mode of your linky will just NOT work, you need to adpat to your needs        
+
+Read and get full working samples on @mathieucarbou [gist](https://gist.github.com/mathieucarbou/886d2a6f5c0b51bb261d6a1329beb08d#file-readme-md)
+
+`denky-d4.yaml`
+
+```yaml
+# This code comes from @mathieucarbou many thanks to him
+# you need to check it out and adapt depending on your needs
+# https://gist.github.com/mathieucarbou/886d2a6f5c0b51bb261d6a1329beb08d#file-readme-md
+# You need to knw wich mode your smart meter is (HISTORIQUE or STANDARD)
+# and which contract you have to adjust sensor name to grab correct sensor information
+
+esphome:
+  name: denky-d4
+  friendly_name: Denky D4
+
+esp32:
+  board: denky_d4
+  framework:
+    type: esp-idf
+
+logger:
+#  level: WARN
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+api:
+
+ota:
+  platform: esphome
+
+
+# Denky D4 RX pin
+uart:
+  rx_pin:
+    number: GPIO8
+    ignore_pin_validation_error: true
+  baud_rate: 1200
+  parity: EVEN
+  data_bits: 7
+  stop_bits: 1
+
+
+binary_sensor:
+  - platform: status
+    id: teleinfo_status
+    name: "Teleinfo Status"
+
+button:
+  - platform: restart
+    name: "Teleinfo Restart"
+
+
+# https://esphome.io/components/sensor/teleinfo.html
+teleinfo:
+  update_interval: 5s
+  historical_mode: true
+
+# Web Server: https://esphome.io/components/web_server.html
+web_server:
+  local: true
+  port: 80    
+    #   auth:
+    #     username: !secret esphome_web_server_username
+    #     password: !secret esphome_web_server_password
+
+# https://esphome.io/components/sensor/index.html
+sensor:
+  # WiFi
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    unit_of_measurement: dB
+    device_class: signal_strength
+    accuracy_decimals: 0
+    update_interval: 60s
+  # Uptime
+  - platform: uptime
+    name: "Uptime"
+    unit_of_measurement: s
+    device_class: duration
+    accuracy_decimals: 0
+    update_interval: 60s
+
+
+#######################################################
+#      HISTORIQUE with Heures Creuses Contract        #
+# Pasting this code without knowing your contract and #
+# teleinfo mode of your linky will just NOT work      #
+# YOu will need to adpat to your needs                #
+#######################################################
+
+  # Intensité souscrite
+  - platform: teleinfo
+    tag_name: "ISOUSC"
+    name: "Intensité souscrite"
+    unit_of_measurement: A
+    device_class: current
+    state_class: measurement
+  # Index option Base
+  #- platform: teleinfo
+  # tag_name: "BASE"
+  # name: "Index Base"
+  # unit_of_measurement: kWh
+  # device_class: energy
+  # state_class: total_increasing
+  # accuracy_decimals: 3
+  # filters:
+  #   - multiply: 0.001
+  # Index option HP/HC
+  - platform: teleinfo
+    tag_name: "HCHC"
+    name: "Index HC"
+    unit_of_measurement: kWh
+    device_class: energy
+    state_class: total_increasing
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+  - platform: teleinfo
+    tag_name: "HCHP"
+    name: "Index HP"
+    unit_of_measurement: kWh
+    device_class: energy
+    state_class: total_increasing
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+  # Intensité Instantanée (monophasé)
+  - platform: teleinfo
+    tag_name: "IINST"
+    name: "Intensité Instantanée"
+    unit_of_measurement: A
+    device_class: current
+    state_class: measurement
+  # Avertissement de Dépassement De Puissance Souscrite
+  - platform: teleinfo
+    tag_name: "ADPS"
+    name: "Intensité Instantanée Dépassement"
+    unit_of_measurement: A
+    device_class: current
+    state_class: measurement
+  # Intensité maximale appelée (monophasé)
+  - platform: teleinfo
+    tag_name: "IMAX"
+    name: "Intensité Maximale"
+    unit_of_measurement: A
+    device_class: current
+    state_class: measurement
+  # Puissance apparente
+  - platform: teleinfo
+    tag_name: "PAPP"
+    name: "Puissance Apparente"
+    unit_of_measurement: VA
+    state_class: measurement
+    device_class: apparent_power
+
+# https://esphome.io/components/text_sensor/index.html
+text_sensor:
+  # Adresse du compteur
+  - platform: teleinfo
+    tag_name: "ADCO"
+    name: "Adresse"
+  # Option tarifaire choisie
+  - platform: teleinfo
+    tag_name: "OPTARIF"
+    name: "Option Tarifaire"
+  # Période Tarifaire en cours
+  - platform: teleinfo
+    tag_name: "PTEC"
+    name: "Période Tarifaire"
+  # Couleur du lendemain
+  - platform: teleinfo
+    tag_name: "DEMAIN"
+    name: "Couleur Demain"
+  # Horaire Heures Pleines Heures Creuses
+  - platform: teleinfo
+    tag_name: "HHPHC"
+    name: "Horaire HP/HC"
+  # Mot d'état du compteur
+  - platform: teleinfo
+    tag_name: "MOTDETAT"
+    name: "Mot d'état"
+
+```
+
+
 # Support and discussion
 
 If you have any issue or just want to discuss on this project, please use community [forum](https://community.ch2i.eu/category/20)
